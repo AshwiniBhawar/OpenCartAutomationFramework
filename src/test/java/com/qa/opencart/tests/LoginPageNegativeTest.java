@@ -12,17 +12,17 @@ public class LoginPageNegativeTest extends BaseTest {
 	@DataProvider
 	public Object[][] getNegativeLoginData() {
 		return new Object[][] {
-			//{"automationframework@gmail.com", "autoframe"},
-			//{"automationframework@gmail.com", ""},
-			//{"", "test@123"},
-			//{"", ""},
+			{"automationframework@gmail.com", "autoframe"},
+			{"automationframework@gmail.com", ""},
+			{"", "test@123"},
+			{"", ""},
 			{"tester871234@gmail.com","test12234"}
 		};
 	}
 	
 	@DataProvider
 	public Object[][] getNegativeLoginDataFromExcel(){
-		return ExcelUtil.getTestData("negativelogintestdata", "negativelogindata");
+		return ExcelUtil.getTestData("testdatainfo", "negativelogintestdata");
 	}
 	
 

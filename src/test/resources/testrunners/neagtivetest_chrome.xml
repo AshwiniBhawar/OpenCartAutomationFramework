@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Open Cart App Negative Tests Suite" verbose="4" parallel="tests" thread-count="5">
+	
+	<listeners>
+		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+		<listener class-name="com.qa.opencart.listeners.TestAllureListener" />
+		<listener class-name="com.qa.opencart.listeners.RetryListener"/>
+	</listeners>
+	
+	<test name="Login Page Negative Test_Chrome">
+	<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.opencart.tests.LoginPageNegativeTest" />
+		</classes>
+	</test> 
+	
+</suite>

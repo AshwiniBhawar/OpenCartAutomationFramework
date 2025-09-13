@@ -28,17 +28,23 @@ public class RegistrationTest extends BaseTest{
 	
 	@DataProvider
 	public Object[][] getRegExcelData() {
-		return ExcelUtil.getTestData("registrationdata","register");
+		return ExcelUtil.getTestData("testdatainfo","registrationdatawithemail");
 	}
 	
 	@DataProvider
-	public Object[][] getRegCSVData() {
+	public Object[][] getRegCSVDataWithoutEmail() {
 		return CSVUtil.getCSVData("registrationdata");
 	}
 	
-	@Test(dataProvider="getRegCSVData")
+	//@Test(dataProvider="getRegCSVDataWithoutEmail")
 	public void register(String firstName, String lastName, String telephone, String password, String subscribe) {
 		boolean result=registrationPage.userRegister(firstName, lastName, StringUtil.getRandomEmail(), telephone, password, subscribe);
 		Assert.assertTrue(result);
 	} 
+	
+	@Test(dataProvider="getRegExcelData")
+	public void register(String firstName, String lastName, String email,String telephone, String password, String subscribe) {
+		boolean result=registrationPage.userRegister(firstName, lastName, email, telephone, password, subscribe);
+		Assert.assertTrue(result);
+	}
 }
