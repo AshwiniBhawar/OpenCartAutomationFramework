@@ -44,14 +44,14 @@ pipeline
         }
       
         
-        stage('QA Publish Sanity ChainTest Report '){
+        stage('QA Publish Chrome ChainTest Report '){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'QA HTML Sanity ChainTest Report', 
+                                  reportName: 'QA HTML Chrome ChainTest Report', 
                                   reportTitles: ''])
             }
         }
@@ -74,14 +74,14 @@ pipeline
             }
         }
         
-        stage('UAT Publish Sanity ChainTest Report'){
+        stage('UAT Publish Firefox ChainTest Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'UAT HTML Sanity ChainTest Report', 
+                                  reportName: 'UAT HTML Firefox ChainTest Report', 
                                   reportTitles: ''])
             }
         }
@@ -118,14 +118,14 @@ pipeline
             }
         }
         
-        stage('PROD Publish Sanity ChainTest Report'){
+        stage('PROD Publish Edge ChainTest Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'PROD HTML Sanity ChainTest Report', 
+                                  reportName: 'PROD HTML Edge ChainTest Report', 
                                   reportTitles: ''])
             }
         }
