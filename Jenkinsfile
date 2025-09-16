@@ -33,18 +33,48 @@ pipeline
         }
         
                 
-        stage('Sanity Automation Tests') {
+        stage('QA Sanity Automation Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_santity.xml -Denv=qa"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/chrome.xml -Denv=qa"
                     
                 }
             }
         }
-                
-     
-        stage('Publish Allure Reports') {
+      
+        
+        stage('QA Publish Sanity ChainTest Report '){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'target/chaintest', 
+                                  reportFiles: 'Index.html', 
+                                  reportName: 'QA HTML Sanity ChainTest Report', 
+                                  reportTitles: ''])
+            }
+        }
+        
+        
+        stage("Deploy to UAT"){
+            steps{
+                echo("deploy to UAT")
+            }
+        }
+        
+        
+        stage('UAT Sanity Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/firefox.xml -Denv=uat"
+                    
+                }
+            }
+        }
+      
+          stage('UAT Publish Allure Reports') {
            steps {
                 script {
                     allure([
@@ -58,46 +88,14 @@ pipeline
             }
         }
         
-        
-        stage('Publish ChainTest HTML Report'){
+        stage('UAT Publish Sanity ChainTest Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'HTML Regression ChainTest Report', 
-                                  reportTitles: ''])
-            }
-        }
-        
-        
-        stage("Deploy to UAT"){
-            steps{
-                echo("deploy to UAT")
-            }
-        }
-        
-        
-        stage('Sanity Automation Test') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
-                    
-                }
-            }
-        }
-        
-        
-        stage('Publish Sanity ChainTest Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'target/chaintest', 
-                                  reportFiles: 'Index.html', 
-                                  reportName: 'HTML Sanity ChainTest Report', 
+                                  reportName: 'UAT HTML Sanity ChainTest Report', 
                                   reportTitles: ''])
             }
         }
@@ -110,16 +108,41 @@ pipeline
         }
 
 
-        stage('Sanity Automation Test on PROD') {
+        stage('PROD Sanity Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/edge.xml -Denv=prod"
                     
                 }
             }
         }
         
+        stage('PROD QA Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
+            }
+        }
+        
+        stage('PROD Publish Sanity ChainTest Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'target/chaintest', 
+                                  reportFiles: 'Index.html', 
+                                  reportName: 'PROD HTML Sanity ChainTest Report', 
+                                  reportTitles: ''])
+            }
+        }
         
     }
 }
