@@ -12,10 +12,19 @@ import com.qa.opencart.base.BaseTest;
 import com.qa.opencart.utils.CSVUtil;
 import com.qa.opencart.utils.ExcelUtil;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+
+@Epic("EP-6: Design the Open Cart App Product Info Page")
+@Feature("F-6: design open cart product info feature")
+@Story("US-6: develope product info feature- product info, images count, headers etc.")
 public class ProductInfoPageTest extends BaseTest {
 	
 	//BT(chrome+url)--> BC(login) --> @Test
 	
+		@Description("login to the application")
 		@BeforeClass
 		public void accPageSetup() {
 			accountPage= loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
@@ -31,7 +40,7 @@ public class ProductInfoPageTest extends BaseTest {
 			};
 		}
 			
-		
+		@Description("product headers test for {1}")
 		@Test(dataProvider="productHeaderData")
 		public void productHeaderTest(String searchKey, String productName) {
 			searchResultPage=accountPage.searchProduct(searchKey);
@@ -60,6 +69,7 @@ public class ProductInfoPageTest extends BaseTest {
 			return CSVUtil.getCSVData("productdata");
 		}
 		
+		@Description("product images count test")
 		@Test(dataProvider="getProductImagesDataCSV")
 		public void productImagesCountTest(String searchKey, String productName, String imageCount) {
 			int expectedImageCount=Integer.parseInt(imageCount);
@@ -81,6 +91,7 @@ public class ProductInfoPageTest extends BaseTest {
 			return ExcelUtil.getTestData("testdatainfo","productinfo");
 		}
 		
+		@Description("product info data test for {1}")
 		@Test(dataProvider="getProductInfoCSVData")
 		public void productInfoTest(String searchKey,String productName, String productImages, String brand, String productCode, 
 									String rewardPoints,String availability, String originalPrice, String productPrice, String exTaxPrice) {

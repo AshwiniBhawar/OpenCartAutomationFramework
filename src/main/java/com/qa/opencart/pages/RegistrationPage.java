@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.opencart.constants.AppConstants;
-import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
 public class RegistrationPage {
@@ -43,7 +43,9 @@ public class RegistrationPage {
 		
 	public boolean userRegister(String firstName, String lastName, String email, String telephone, String password, String subscribe) {
 		log.info("fill the registration form");
-		eUtil.waitForElementVisible(this.firstName, AppConstants.DEFAULT_SHORT_WAIT).sendKeys(firstName);
+		WebElement ele=eUtil.waitForElementVisible(this.firstName, AppConstants.DEFAULT_SHORT_WAIT);
+		ele.clear();
+		ele.sendKeys(firstName);
 		eUtil.doSendKeys(this.lastName, lastName);
 		eUtil.doSendKeys(this.email, email);
 		eUtil.doSendKeys(this.telephone, telephone);
