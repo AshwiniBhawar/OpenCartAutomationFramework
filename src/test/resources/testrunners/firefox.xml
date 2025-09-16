@@ -9,42 +9,42 @@
 		<listener class-name="com.qa.opencart.listeners.RetryListener"/>
 	</listeners>
 	
-	<test name="Login Page Test">
+	<test name="Login Page Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
 	
-	<test name="Add Product To The Cart Page Test">
+	<test name="Add Product To The Cart Page Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.AddProductToTheCartPageTest" />
 		</classes>
 	</test>
 	
-	<!-- <test name="Account Page Test">
+	<!-- <test name="Account Page Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.AccountPageTest" />
 		</classes>
 	</test>
 	
-	<test name="Product Info Page Test">
+	<test name="Product Info Page Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
 	</test> -->
 	
-	<!-- <test name="Registration Test">
+	<!-- <test name="Registration Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.RegistrationTest" />
 		</classes>
 	</test> -->
 	
-	<!-- <test name="Search Test">
+	<!-- <test name="Search Test_Firefox">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.SearchTest" />

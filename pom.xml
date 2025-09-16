@@ -19,6 +19,13 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>6.3.2</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -123,17 +130,18 @@
 				<configuration>
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
-					
+
 					<suiteXmlFiles>
-						 <!-- <suiteXmlFile>src/test/resources/testrunners/testng_sanity.xml</suiteXmlFile>-->
+						<!--
+						<suiteXmlFile>src/test/resources/testrunners/testng_sanity.xml</suiteXmlFile>-->
 						<suiteXmlFile>${suiteXmlFiles}</suiteXmlFile>
 					</suiteXmlFiles>
-					
+
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
 				</configuration>
-				
+
 				<dependencies>
 					<dependency>
 						<groupId>org.aspectj</groupId>
@@ -142,8 +150,8 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 		</plugins>
 	</build>
-	
+
 </project>

@@ -73,20 +73,6 @@ pipeline
                 }
             }
         }
-      
-          stage('UAT Publish Allure Reports') {
-           steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '/allure-results']]
-                    ])
-                }
-            }
-        }
         
         stage('UAT Publish Sanity ChainTest Report'){
             steps{

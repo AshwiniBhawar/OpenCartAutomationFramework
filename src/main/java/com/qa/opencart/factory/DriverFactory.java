@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -17,6 +18,8 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import com.qa.opencart.errors.AppError;
 import com.qa.opencart.exceptions.FrameworkException;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
