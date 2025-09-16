@@ -32,6 +32,14 @@ pipeline
             }
         }
         
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    // Clean the workspace before running the job
+                    cleanWs()
+                }
+            }
+        }
                 
         stage('QA Sanity Automation Tests') {
             steps {
@@ -44,14 +52,14 @@ pipeline
         }
       
         
-        stage('QA Publish Chrome ChainTest Report '){
+        stage('QA Publish Sanity ChainTest Report '){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'QA HTML Chrome ChainTest Report', 
+                                  reportName: 'QA HTML Sanity ChainTest Report', 
                                   reportTitles: ''])
             }
         }
@@ -74,14 +82,14 @@ pipeline
             }
         }
         
-        stage('UAT Publish Firefox ChainTest Report'){
+        stage('UAT Publish Sanity ChainTest Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'UAT HTML Firefox ChainTest Report', 
+                                  reportName: 'UAT HTML Sanity ChainTest Report', 
                                   reportTitles: ''])
             }
         }
@@ -118,14 +126,14 @@ pipeline
             }
         }
         
-        stage('PROD Publish Edge ChainTest Report'){
+        stage('PROD Publish Sanity ChainTest Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
                                   reportDir: 'target/chaintest', 
                                   reportFiles: 'Index.html', 
-                                  reportName: 'PROD HTML Edge ChainTest Report', 
+                                  reportName: 'PROD HTML Sanity ChainTest Report', 
                                   reportTitles: ''])
             }
         }
