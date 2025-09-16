@@ -112,7 +112,7 @@ public class DriverFactory {
 					ip = new FileInputStream("./src/test/resources/config/config.dev.properties");
 					break;
 				case "prod":
-					ip = new FileInputStream("./src/test/resources/config/config.properties");
+					ip = new FileInputStream("./src/test/resources/config/config.prod.properties");
 					break;
 				default:
 					log.error("Env value is invalid..please pass the right env value");
