@@ -105,7 +105,7 @@ public class ProductInfoPage {
 		WebElement productQtyLocator = eUtil.waitForElementVisible(productCountLocator,AppConstants.DEFAULT_MEDIUM_WAIT);
 		productQtyLocator.clear();
 		productQtyLocator.sendKeys(productQty);
-		eUtil.doClick(addToCartBtnLocator);
+		eUtil.waitForElementVisible(addToCartBtnLocator,AppConstants.DEFAULT_MEDIUM_WAIT).click();
 		eUtil.waitForElementVisible(shoppingCartLinkLocator, AppConstants.DEFAULT_MEDIUM_WAIT).click();
 		return new CheckOutPage(driver);
 	}

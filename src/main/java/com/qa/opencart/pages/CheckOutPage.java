@@ -38,7 +38,7 @@ public class CheckOutPage {
 		return eUtil.isElementDisplayed(checkoutBtnLocator);
 	}
 	
-	public List<String> shoppingCartProductDetails(String productImg, String productName, String productModel,String productQuanity, String productUnitPrice, String totalPrice) {
+	public List<String> shoppingCartProductDetails() {
 		log.info("get the details of shopping cart product");
 		eUtil.waitForElementsVisible(shopCartProductHeaderLocator, AppConstants.DEFAULT_MEDIUM_WAIT);
 		List<WebElement> rows=eUtil.getElements(getTableRowsLocator);
