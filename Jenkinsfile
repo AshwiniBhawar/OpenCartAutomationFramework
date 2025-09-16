@@ -13,7 +13,7 @@ pipeline
             steps
             {
                  git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 batch "mvn -Dmaven.test.failure.ignore=true clean package"
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post 
             {
@@ -26,21 +26,18 @@ pipeline
         }
         
         
-        
         stage("Deploy to QA"){
             steps{
                 echo("deploy to QA")
             }
         }
         
-        
-        
                 
         stage('Sanity Automation Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    batch "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_santity.xml -Denv=qa"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_santity.xml -Denv=qa"
                     
                 }
             }
@@ -74,22 +71,23 @@ pipeline
             }
         }
         
+        
         stage("Deploy to UAT"){
             steps{
                 echo("deploy to UAT")
             }
         }
         
+        
         stage('Sanity Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    batch "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
                     
                 }
             }
         }
-        
         
         
         stage('Publish Sanity ChainTest Report'){
@@ -116,7 +114,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/AshwiniBhawar/OpenCartAutomationFramework.git'
-                    batch "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
                     
                 }
             }
