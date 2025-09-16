@@ -9,17 +9,17 @@
 		<listener class-name="com.qa.opencart.listeners.RetryListener"/>
 	</listeners>
 	
-	<!-- <test name="Login Page Test">
+	<test name="Login Page Test">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
-	</test> -->
+	</test>
 	
-	<test name="Add To Cart Page Test">
+	<test name="Add Product To The Cart Page Test">
 	<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.qa.opencart.tests.AddToCartPageTest" />
+			<class name="com.qa.opencart.tests.AddProductToTheCartPageTest" />
 		</classes>
 	</test>
 	
@@ -33,16 +33,16 @@
 	<test name="Product Info Page Test">
 	<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.qa.opencart.tests.LoginPageTest" />
+			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
 	</test> -->
 	
-	<test name="Registration Test">
+	<!-- <test name="Registration Test">
 	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.RegistrationTest" />
 		</classes>
-	</test>
+	</test> -->
 	
 	<!-- <test name="Search Test">
 	<parameter name="browser" value="firefox" />
@@ -51,18 +51,25 @@
 		</classes>
 	</test> -->
 	
-	<test name="Home Page Test_Firefox">
+	<!-- <test name="Home Page Test_Firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.HomePageTest" />
 		</classes>
 	</test>
 	
-	<test name="Product Review Page Test_Firefoxe">
+	<test name="Product Review Page Test_Firefox">
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.ProductReviewTest" />
 		</classes>
 	</test>
-
+	
+	<test name="Shopping Cart Product Details Test_Firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.qa.opencart.tests.ShoppingCartProductDetailsTest" />
+		</classes>
+	</test>
+ -->
 </suite>

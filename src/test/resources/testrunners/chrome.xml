@@ -10,49 +10,49 @@
 		<listener class-name="com.qa.opencart.listeners.RetryListener" />
 	</listeners>
 
-	<test name="Login Page Test">
-		<parameter name="browser" value="chrome" />
+	<test name="Login Page Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-
-	<!-- <test name="Add To Cart Page Test">
-		<parameter name="browser" value="chrome" />
+	
+	<test name="Add Product To The Cart Page Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.AddProductToTheCartPageTest" />
 		</classes>
 	</test>
 	
-	<test name="Account Page Test">
-		<parameter name="browser" value="chrome" />
+	<!-- <test name="Account Page Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.AccountPageTest" />
 		</classes>
 	</test>
 	
-	<test name="Product Info Page Test">
-		<parameter name="browser" value="chrome" />
+	<test name="Product Info Page Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="Registration Test">
-		<parameter name="browser" value="chrome" />
+	<!-- <test name="Registration Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.RegistrationTest" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="Search Test">
-		<parameter name="browser" value="chrome" />
+	<!-- <test name="Search Test_Chrome">
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.SearchTest" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="Home Page Test_Chrome">
+	<!-- <test name="Home Page Test_Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.HomePageTest" />
@@ -66,12 +66,12 @@
 		</classes>
 	</test>
 	
-	<test name="Shopping Cart Page Test_Chrome">
+	<test name="Shopping Cart Product Details Test_Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class
-				name="com.qa.opencart.tests.ShoppingCartProductDetailsTest" />
+			<class name="com.qa.opencart.tests.ShoppingCartProductDetailsTest" />
 		</classes>
-	</test> -->
+	</test>
+ -->
 
 </suite>
