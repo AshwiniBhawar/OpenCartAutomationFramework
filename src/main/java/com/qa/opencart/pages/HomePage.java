@@ -16,6 +16,8 @@ import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 import com.qa.opencart.utils.JavascriptUtil;
 
+import io.qameta.allure.Step;
+
 public class HomePage {
 	
 	private WebDriver driver;
@@ -36,15 +38,17 @@ public class HomePage {
 	private final By scrollBrandLogoLocator= By.xpath("//div[contains(@class,'carousel0')]//span[@class='swiper-pagination-bullet']");
 	private final By swipperSlideImageLocator= By.cssSelector(".swiper-slide.text-center.swiper-slide-active img[alt='MacBookAir']");
 	
-
+	@Step("homepage nal logo display result")
 	public boolean isNALLogoDisplayed() {
 		return cm.isNAlLogoDisplayed();
 	}
 	
+	@Step("homepage menu list")
 	public List<String> getMenuList() {
 		return cm.getMenuList();
 	}
 	
+	@Step("homepage brand logo list")
 	public List<String> getBrandLogoList() {
 		jsUtil.scrollIntoView(eUtil.getElement(getBrandLogoLocator));
 		List<WebElement> scrollCount=eUtil.waitForElementsVisible(scrollBrandLogoLocator, AppConstants.DEFAULT_MEDIUM_WAIT);
@@ -69,12 +73,14 @@ public class HomePage {
 		return cm.searchProduct(searchKey);
 	}
 	
+	@Step("homepage swipper image section exist")
 	public boolean isSwipperImageSectionExist() {
 		boolean result=eUtil.waitForElementVisible(swipperSlideImageLocator, AppConstants.DEFAULT_SHORT_WAIT).isDisplayed();
 		log.info("is swipper image section exist on home page: "+result);
 		return result;
 	}
 	
+	@Step("homepage top menu headers list")
 	public List<String> topMenuHeadersList(){
 		return cm.topMenuHeadersList();
 	}

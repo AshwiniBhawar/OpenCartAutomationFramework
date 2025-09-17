@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class RegistrationPage {
 	
 	private WebDriver driver;
@@ -40,7 +42,7 @@ public class RegistrationPage {
 	private final By logoutLink = By.linkText("Logout");
 	private final By registerLink = By.linkText("Register");
 	
-		
+	@Step("register a new user")	
 	public boolean userRegister(String firstName, String lastName, String email, String telephone, String password, String subscribe) {
 		log.info("fill the registration form");
 		WebElement ele=eUtil.waitForElementVisible(this.firstName, AppConstants.DEFAULT_SHORT_WAIT);

@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class AccountPage{
 
 	private WebDriver driver;
@@ -29,10 +31,12 @@ public class AccountPage{
 	private final By myAccountHeadersLocator = By.cssSelector("div#content h2");
 	private final By logoutLinkLocator = By.linkText("Logout");
 	
+	@Step("search a product")
 	public SearchResultPage searchProduct(String searchKey) {
 		return cm.searchProduct(searchKey);
 	}
 	
+	@Step("account page headers list")
 	public List<String> getAccountPageHeaders() {
 		List<WebElement> headersList=eUtil.waitForElementsPresence(myAccountHeadersLocator, AppConstants.DEFAULT_MEDIUM_WAIT);
 		log.info("total number of headers :"+headersList.size());
@@ -45,6 +49,7 @@ public class AccountPage{
 		return headersValList;
 	}
 	
+	@Step("Account page logout link exist")
 	public boolean isLogoutLinkExist() {
 		WebElement logoutEle= eUtil.waitForElementVisible(logoutLinkLocator, AppConstants.DEFAULT_MEDIUM_WAIT);
 		boolean result=eUtil.isElementDisplayed(logoutEle);
@@ -52,10 +57,12 @@ public class AccountPage{
 		return result;
 	}
 	
+	@Step("navigate to home page")
 	public HomePage navigateToHomePage() {
 		return cm.navigateToHomePage();
 	}
 	
+	@Step("click on shopping cart link")
 	public CheckOutPage clickShoppingCartLink() {
 		return cm.clickOnShoppingCartLink();
 	}

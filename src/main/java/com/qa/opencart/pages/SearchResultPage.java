@@ -9,6 +9,8 @@ import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class SearchResultPage {
 	
 	private WebDriver driver;
@@ -23,19 +25,22 @@ public class SearchResultPage {
 	
 	private final By searchResultsLocator= By.xpath("//div[@class='product-thumb']");
 	private final By resultsHeaderLocator=By.tagName("h1");
-		
+	
+	@Step("product search result count")
 	public int getResultsCount() {
 		int resultsCount= eUtil.waitForElementsVisible(searchResultsLocator, AppConstants.DEFAULT_MEDIUM_WAIT).size();
 		log.info("results count :"+ resultsCount);
 		return resultsCount;
 	}
 	
+	@Step("product search result headers")
 	public String getResultsHeader() {
 		String resultsHeader= eUtil.doElementGetText(resultsHeaderLocator);
 		log.info("results header :"+ resultsHeader);
 		return resultsHeader;
 	}
 	
+	@Step("click on search product")
 	public ProductInfoPage clickOnSearchProduct(String productName) {
 		log.info("product name :" + productName);
 		eUtil.doClick(By.linkText(productName));

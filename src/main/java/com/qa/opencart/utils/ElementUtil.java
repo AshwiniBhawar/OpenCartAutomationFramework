@@ -43,6 +43,7 @@ public class ElementUtil {
 			jsUtil= new JavascriptUtil(driver);
 		}
 
+		@Step("get a webelement for {0} locator")
 		public WebElement getElement(By locator) {
 			WebElement element=driver.findElement(locator);
 			if(DriverFactory.highlightElement.equals("true")) {
@@ -52,6 +53,7 @@ public class ElementUtil {
 			return element;
 		}
 
+		@Step("send a value {1} into the textbox which has {0} locator")
 		public void doSendKeys(By locator, String... value) {
 			log.info("entering the value : " + Arrays.toString(value) + " into locator: " + locator);
 			if (value == null) {
@@ -62,7 +64,8 @@ public class ElementUtil {
 			ele.clear();
 			ele.sendKeys(value);
 		}
-
+		
+		@Step("send multiple values {1} into the textbox which has {0} locator")
 		public void doMultipleSendKeys(By locator, CharSequence... value) {			//send multiple values comma seperated
 //			for(CharSequence v:value) {
 //				if(v==null) {
@@ -72,17 +75,19 @@ public class ElementUtil {
 			getElement(locator).sendKeys(value);
 		}
 
+		@Step("click a {0} locator")
 		public void doClick(By locator) {
 			log.info("clicking on element using : " + locator);
 			getElement(locator).click();
 		}
 
+		@Step("get a text of {0} locator")
 		public String doElementGetText(By locator) {
 			log.info("get the text of the element: " + locator);
 			return getElement(locator).getText();
 		}
 
-		@Step("checking the element :{0} is displayed on the page.. ")
+		@Step("checking the element :{0} is displayed on the page")
 		public boolean isElementDisplayed(By locator) {
 			try {
 				return getElement(locator).isDisplayed();
@@ -92,6 +97,7 @@ public class ElementUtil {
 			}
 		}
 		
+		@Step("checking the element :{0} is displayed on the page")
 		public boolean isElementDisplayed(WebElement element) {
 			try {
 				return element.isDisplayed();
@@ -101,6 +107,7 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("checking the element :{0} is displayed on the page for mandatory fields")
 		public boolean isElementDisplayedForMandortyFields(By locator) {
 			try {
 				return getElement(locator).isDisplayed();
@@ -110,6 +117,7 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("checking the element :{0} is eanbled on the page")
 		public boolean isElementEnabled(By locator) {
 			try {
 				return getElement(locator).isEnabled();
@@ -119,14 +127,17 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("get the dom attribute value of {1} for {0}")
 		public String getElementDOMAttributeValue(By locator, String attrName) {
 			return getElement(locator).getDomAttribute(attrName);
 		}
 
+		@Step("get the dom attribute property value of {1} for {0}")
 		public String getElementDOMPropertyValue(By locator, String propName) {
 			return getElement(locator).getDomProperty(propName);
 		}
 
+		@Step("checking {0} exist")
 		public boolean isElementExist(By locator) {
 			if (getElements(locator).size() == 1) {
 				log.info("the element : " + locator + " is present on the page one time");
@@ -137,6 +148,7 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("checking {0} exist within particular range")
 		public boolean isElementExist(By locator, int expectedEleCount) {
 			if (getElements(locator).size() == expectedEleCount) {
 				log.info("the element : " + locator + " is present on the page " + expectedEleCount + " time");
@@ -147,10 +159,12 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("find the elements for {0}")
 		public List<WebElement> getElements(By locator) {
 			return driver.findElements(locator);
 		}
 
+		@Step("get the webelements text list for {0}")
 		public List<String> getElementsTextList(By locator) {
 			List<WebElement> eleList = getElements(locator);
 			List<String> eleTextList = new ArrayList<String>();// pc=0,vc=10; []
@@ -163,10 +177,12 @@ public class ElementUtil {
 			return eleTextList;
 		}
 
+		@Step("get the webelements list size for {0}")
 		public int getElementsCount(By locator) {
 			return getElements(locator).size();
 		}
 
+		@Step("click the element where text conatins {1}")
 		public boolean clickElement(By locator, String eleText, String expectedPageTitle) throws InterruptedException {
 			List<WebElement> eleList = getElements(locator);
 			log.info("total number of elements: " + eleList.size());
@@ -186,6 +202,7 @@ public class ElementUtil {
 			return false;
 		}
 
+		//@Step("click the element where text conatins {1}")
 		public boolean doSearch(By searchLocator, String searchKey, By suggestionsLocator, String suggestionValue,
 				String expectedPageTitle){
 

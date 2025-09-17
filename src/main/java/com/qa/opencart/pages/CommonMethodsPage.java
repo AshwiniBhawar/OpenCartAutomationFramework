@@ -14,6 +14,8 @@ import com.qa.opencart.exceptions.FrameworkException;
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class CommonMethodsPage {
 
 	private WebDriver driver;

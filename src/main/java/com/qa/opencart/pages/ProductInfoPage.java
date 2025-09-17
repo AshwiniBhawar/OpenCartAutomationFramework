@@ -15,6 +15,8 @@ import com.qa.opencart.exceptions.FrameworkException;
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class ProductInfoPage {
 	private WebDriver driver;
 	private ElementUtil eUtil;
@@ -42,18 +44,21 @@ public class ProductInfoPage {
 	private final By productReviewContinueBtnLocator = By.id("button-review");
 	private final By productReviewMessageLocator = By.cssSelector("div.alert.alert-success.alert-dismissible");
 
+	@Step("get the list of product headers")
 	public String getProductHeader() {
 		String headerVal = eUtil.waitForElementVisible(headerLocator, AppConstants.DEFAULT_MEDIUM_WAIT).getText();
 		log.info("product header :" + headerVal);
 		return headerVal;
 	}
 
+	@Step("product images count")
 	public int getProductImages() {
 		int imagesCount = eUtil.waitForElementsVisible(productImagesLocator, AppConstants.DEFAULT_MEDIUM_WAIT).size();
 		log.info("product images count is:"+ imagesCount);
 		return imagesCount;
 	}
 
+	@Step("product details- headers and images count")
 	public Map<String, String> getProductData() {
 		// productMap= new HashMap<String, String>();
 		productMap = new LinkedHashMap<String, String>();
@@ -67,6 +72,7 @@ public class ProductInfoPage {
 		return productMap;
 	}
 
+	@Step("product meta data")
 	private void getProductMetaData() {
 		List<WebElement> metaList = eUtil.waitForElementsVisible(productMetaData, AppConstants.DEFAULT_MEDIUM_WAIT);
 		log.info("total meta data :" + metaList.size());
@@ -80,6 +86,7 @@ public class ProductInfoPage {
 		}
 	}
 
+	@Step("product price data")
 	private void getProductPriceData() {
 		List<WebElement> priceList = eUtil.waitForElementsVisible(productPriceData, AppConstants.DEFAULT_MEDIUM_WAIT);
 		log.info("total price data: " + priceList.size());
@@ -100,6 +107,7 @@ public class ProductInfoPage {
 		}
 	}
 
+	@Step("add product to the cart")
 	public CheckOutPage addProductToCart(String productQty) {
 		log.info("product quality count is: " + productQty);
 		WebElement productQtyLocator = eUtil.waitForElementVisible(productCountLocator,AppConstants.DEFAULT_MEDIUM_WAIT);
@@ -110,6 +118,7 @@ public class ProductInfoPage {
 		return new CheckOutPage(driver);
 	}
 
+	@Step("product added successfully message")
 	public String productAddedToCartSuccMsg(String productQty) {
 		log.info("product quality count is: " + productQty);
 		WebElement productQtyLocator = eUtil.waitForElementVisible(productCountLocator,AppConstants.DEFAULT_MEDIUM_WAIT);
@@ -123,6 +132,7 @@ public class ProductInfoPage {
 		return succMsg;
 	}
 
+	@Step("write a product review")
 	public String writeProductReview(String fullName, String enterReviewMessage, String ratingValue) {
 		log.info("write a product review");
 		if (fullName.length() >= 3 && fullName.length() <= 25) {

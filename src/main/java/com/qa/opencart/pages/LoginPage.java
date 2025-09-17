@@ -41,35 +41,35 @@ public class LoginPage {
 	
 	//public page methods/actions
 	
-	@Step("waiting for page title..")
+	@Step("waiting for page title")
 	public String getLoginPageTitle() {
 		String title=eUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE, AppConstants.DEFAULT_SHORT_WAIT);
 		log.info("login page title: "+title);
 		return title;
 	}
 	
-	@Step("waiting for login page url..")
+	@Step("waiting for login page url")
 	public String getLoginPagUrl() {
 		String url=eUtil.waitForURLContains(AppConstants.LOGIN_PAGE_FRACTION_URL, AppConstants.DEFAULT_SHORT_WAIT);
 		log.info("login page url: "+url);
 		return url; 
 	}
 	
-	@Step("forgot pws link exist..")
+	@Step("forgot pws link exist")
 	public boolean isForgotPasswordLinkExist() {
 		boolean result=eUtil.isElementDisplayed(forgotPwdLinkLocator);
 		log.info("is forgot pwd link exist: "+ result);
 		return result;
 	}
 	
-	@Step("login page header exist..")
+	@Step("login page header exist")
 	public boolean isHeaderExist() {
 		boolean result=eUtil.isElementDisplayed(headerLocator);
 		log.info("is header exist: "+result);
 		return result;
 	}
 	
-	@Step("login to the open cart application..")
+	@Step("login to the open cart application")
 	public AccountPage doLogin(String appUsername, String appPassword) {
 		log.info("Application credentials : " + appUsername + " : " + "************");
 		eUtil.waitForElementVisible(usernameLocator, AppConstants.DEFAULT_SHORT_WAIT).sendKeys(appUsername);
@@ -78,7 +78,7 @@ public class LoginPage {
 		return new AccountPage(driver);
 	}
 	
-	@Step("navigate to register page..")
+	@Step("navigate to register page")
 	public RegistrationPage navigateToRegisterPage() {
 		log.info("navigate to registration page");
 		eUtil.waitForElementVisible(registerLinkLocator, AppConstants.DEFAULT_SHORT_WAIT).click();
@@ -125,6 +125,7 @@ public class LoginPage {
 		return false;
 	}
 	
+	@Step("get the footer links list")
 	public List<String> getFooterLinks(){
 		return cm.footerLinksExist();
 	}

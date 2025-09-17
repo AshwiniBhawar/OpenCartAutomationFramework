@@ -13,6 +13,8 @@ import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class CheckOutPage {
 	private WebDriver driver;
 	private ElementUtil eUtil;
@@ -34,10 +36,12 @@ public class CheckOutPage {
 	private final By shopcartEmptyMsgLocator=By.xpath("//div[@id='content']/p[contains(text(),'empty')]");
 	private final By shopCartContinueBtnLocator=By.xpath("//div[@class='pull-right']/a");
 	
+	@Step("checkout button exist")
 	public boolean isCheckoutBtnExist() {
 		return eUtil.isElementDisplayed(checkoutBtnLocator);
 	}
 	
+	@Step("shopping cart product details")
 	public List<String> shoppingCartProductDetails() {
 		log.info("get the details of shopping cart product");
 		eUtil.waitForElementsVisible(shopCartProductHeaderLocator, AppConstants.DEFAULT_MEDIUM_WAIT);
@@ -72,6 +76,7 @@ public class CheckOutPage {
 		return list;
 	}
 	
+	@Step("clear products from shopping cart")
 	public String clearShoppingCart() {
 		log.info("clear the shopping cart");
 		try {
@@ -94,6 +99,7 @@ public class CheckOutPage {
 		}
 	}
 	
+	@Step("click on continue button on shopping cart")
 	public HomePage clickContinueOnShoppingCart() {
 		log.info("click on continue button");
 		eUtil.doClick(shopCartContinueBtnLocator);
