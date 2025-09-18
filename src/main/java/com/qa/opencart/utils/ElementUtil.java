@@ -43,7 +43,7 @@ public class ElementUtil {
 			jsUtil= new JavascriptUtil(driver);
 		}
 
-		@Step("get a webelement for {0} locator")
+		@Step("get a webelement:{0}")
 		public WebElement getElement(By locator) {
 			WebElement element=driver.findElement(locator);
 			if(DriverFactory.highlightElement.equals("true")) {
