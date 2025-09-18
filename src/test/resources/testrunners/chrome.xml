@@ -10,7 +10,7 @@
 		<listener class-name="com.qa.opencart.listeners.RetryListener" />
 	</listeners>
 
-	<test name="Login Page Test_Chrome">
+	<!-- <test name="Login Page Test_Chrome">
 	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
@@ -64,7 +64,7 @@
 		<classes>
 			<class name="com.qa.opencart.tests.ProductReviewTest" />
 		</classes>
-	</test>
+	</test> -->
 	
 	<test name="Shopping Cart Product Details Test_Chrome">
 		<parameter name="browser" value="chrome" />

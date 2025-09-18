@@ -202,7 +202,7 @@ public class ElementUtil {
 			return false;
 		}
 
-		//@Step("click the element where text conatins {1}")
+		@Step("click the element where text conatins {1}")
 		public boolean doSearch(By searchLocator, String searchKey, By suggestionsLocator, String suggestionValue,
 				String expectedPageTitle){
 
@@ -229,30 +229,36 @@ public class ElementUtil {
 		
 		//*******************Select drop down utils*************//
 		
+		@Step("search the element :{0}")
 		private void selectElement(By locator) {
 			select = new Select(getElement(locator));
 		}
 		
+		@Step("select the element:{0} by index")
 		public void doSelectByIndex(By locator, int index) {
 			selectElement(locator);
 			select.selectByIndex(index);
 		}
 		
+		@Step("select the element:{0} by visible text")
 		public void doSelectByVisibleText(By locator, String eleText) {
 			selectElement(locator);
 			select.selectByVisibleText(eleText);
 		}
 		
+		@Step("select the element:{0} by fractional visible text")
 		public void doSelectByContainsVisibleText(By locator, String value) {
 			selectElement(locator);
 			select.selectByContainsVisibleText(value);
 		}
 		
+		@Step("select the element:{0} by value")
 		public void doSelectByValue(By locator, String value) {
 			selectElement(locator);
 			select.selectByValue(value);
 		}
 		
+		@Step("select all the elements:{0}")
 		public List<String> getAllSelectedOptionsList(By locator) {
 			selectElement(locator);
 			List<WebElement> options = select.getAllSelectedOptions();
@@ -266,11 +272,13 @@ public class ElementUtil {
 			return allSelectedOptions;
 		}
 		
+		@Step("get count of the element:{0}")
 		public int getAllSelectedOptionsCount(By locator) {
 			selectElement(locator);
 			return select.getAllSelectedOptions().size();
 		}
 
+		@Step("get dropdown values of the element:{0}")
 		public List<String> getDropDownValuesList(By locator) {
 			selectElement(locator);
 			List<WebElement> optionsList = select.getOptions();
@@ -285,12 +293,13 @@ public class ElementUtil {
 			return optionsValueList;
 		}
 		
+		@Step("get dropdown values count of the element:{0}")
 		public int getDropDownOptionsCount(By locator) {
 			selectElement(locator);
 			return select.getOptions().size();
 		}
 		
-		
+		@Step("select dropdown value of the element:{0} which has value:{1}")
 		public void selectDropDownValue(By locator, String value) {
 			List<WebElement> optionsList = getElements(locator);
 			log.info("dropdown values size is: "+optionsList.size());
@@ -303,11 +312,13 @@ public class ElementUtil {
 			}
 		}
 		
+		@Step("select dropdown first value")
 		public String getDropDownFirstSelectValue(By locator) {
 			selectElement(locator);
 			return select.getFirstSelectedOption().getText();
 		}
 		
+		@Step("check dropdown has multiple values or not :{0}")
 		public boolean isDropDownIsMultiple(By locator) {
 			selectElement(locator);
 			boolean isMultiple = select.isMultiple();
@@ -315,26 +326,31 @@ public class ElementUtil {
 			return isMultiple;
 		}
 		
+		@Step("deselect the element:{0} by visible text:{1}")
 		public void doDeSelectByVisibleText(By locator, String eleText) {
 			selectElement(locator);
 			select.deselectByVisibleText(eleText);
 		}
 		
+		@Step("deselect the element:{0} by fraction visible text:{1}")
 		public void doDeSelectByContainsVisibleText(By locator, String eleText) {
 			selectElement(locator);
 			select.deSelectByContainsVisibleText(eleText);
 		}
 		
+		@Step("deselect the element:{0} by index")
 		public void doDeSelectByIndex(By locator, int index) {
 			selectElement(locator);
 			select.deselectByIndex(index);
 		}
 		
+		@Step("deselect the element:{0} by value")
 		public void doDeSelectByValue(By locator, String eleText) {
 			selectElement(locator);
 			select.deselectByVisibleText(eleText);
 		}
 		
+		@Step("deselect all the selected element:{0}")
 		public void doDeSelectAll(By locator) {
 			selectElement(locator);
 			select.deselectAll();
@@ -342,18 +358,21 @@ public class ElementUtil {
 		
 		//*************************************Actions utils**************************************//
 		
+		@Step("move to the element:{0} using action class")
 		private void moveToElement(By locator) throws InterruptedException {
 			Thread.sleep(1000);
 			action.moveToElement(getElement(locator)).perform();
 			
 		}
 		
+		@Step("handling level 2 sub menus using action class")
 		public void menuSubMenuHandlingLevel2(By parentMenu,By childMenu) throws InterruptedException {
 			moveToElement(parentMenu);
 			Thread.sleep(1000);
 			doClick(childMenu);
 		}
 		
+		@Step("handling level 3 sub menus using action class")
 		public void menuSubMenuHandlingLevel3(By menuLevel1, By menuLevel2, By menuLevel3) throws InterruptedException {
 			doClick(menuLevel1);
 			moveToElement(menuLevel2);
@@ -361,6 +380,7 @@ public class ElementUtil {
 			doClick(menuLevel3);
 		}
 		
+		@Step("handling level 4 sub menus using action class")
 		public void menuSubMenuHandlingLevel4(String actionType,By menuLevel1, By menuLevel2, By menuLevel3, By menuLevel4) throws InterruptedException {
 			if(actionType.equalsIgnoreCase("click")) {
 				doClick(menuLevel1);
@@ -375,18 +395,22 @@ public class ElementUtil {
 			doClick(menuLevel4);
 		}
 		
+		@Step("drag:{0} and drop{1} the element using actions class")
 		public void dragAndDrop(By srcLocator, By destLocator) {
 			action.dragAndDrop(getElement(srcLocator), getElement(destLocator));
 		}
 		
+		@Step("sending a value:{1} in the textbox for the element:{0} using actions class")
 		public void doActionsSendKeys(By locator, String value) {
 			action.sendKeys(getElement(locator), value).perform();
 		}
 
+		@Step("click on the element:{0} using actions class")
 		public void doActionsClick(By locator) {
 			action.click(getElement(locator)).perform();
 		}
 
+		@Step("sending a value:{1} in the textbox for the element:{0} using actions class")
 		public void doSendKeysWithPause(By locator, String value, long pauseTime) {
 
 			if (value == null) {
@@ -401,6 +425,7 @@ public class ElementUtil {
 
 		}
 
+		@Step("sending a value:{1} in the textbox for the element:{0} using actions class")
 		public void doSendKeysWithPause(By locator, String value) {
 
 			if (value == null) {
@@ -415,10 +440,12 @@ public class ElementUtil {
 
 		}
 		
+		@Step("scroll to the element:{0} using actions class")
 		public void scrollToElement(By locator) {
 			action.scrollToElement(getElement(locator)).perform();
 		}
 		
+		@Step("right click on the element:{0} using actions class")
 		public void contextClick(By locator) {
 			action.contextClick(getElement(locator)).perform();
 		}
@@ -434,6 +461,7 @@ public class ElementUtil {
 		 * @param timeout
 		 * @return
 		 */
+		@Step("waiting for a presence of the element :{0}")
 		public WebElement waitForElementPresence(By locator, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -453,7 +481,7 @@ public class ElementUtil {
 		 * @return
 		 */
 		
-		@Step("waiting for element :{0} visible within the timeout: {1}")
+		@Step("waiting for a visiblity of the element :{0}")
 		public WebElement waitForElementVisible(By locator, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -471,6 +499,7 @@ public class ElementUtil {
 		 * @param timeout
 		 * @return
 		 */
+		@Step("waiting for a presence of the elements:{0}")
 		public List<WebElement> waitForElementsPresence(By locator, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
@@ -486,6 +515,8 @@ public class ElementUtil {
 		 * @param timeout
 		 * @return
 		 */
+		
+		@Step("waiting for a visiblity of the elements:{0}")
 		public List<WebElement> waitForElementsVisible(By locator, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
@@ -498,28 +529,35 @@ public class ElementUtil {
 		 * @param locator
 		 * @param timeout
 		 */
+		
+		@Step("waiting for the element:{0} to click")
 		public void clickElementWhenReady(By locator, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 		}
 
+		
 		public Alert waitForAlert(int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			return wait.until(ExpectedConditions.alertIsPresent());
 		}
 
+		@Step("waiting for an alert and get the text")
 		public String getAlertText(int timeout) {
 			return waitForAlert(timeout).getText();
 		}
 
+		@Step("waiting for an alert and accept it")
 		public void acceptAlert(int timeout) {
 			waitForAlert(timeout).accept();
 		}
 
+		@Step("waiting for an alert and dismiss it")
 		public void dismissAlert(int timeout) {
 			waitForAlert(timeout).dismiss();
 		}
 
+		@Step("waiting for an alert and send a value in textbox:{1}")
 		public void sendKeysInAlert(int timeout, String value) {
 			waitForAlert(timeout).sendKeys(value);
 		}
@@ -549,7 +587,7 @@ public class ElementUtil {
 
 			return driver.getTitle();
 		}
-
+		@Step("waiting for a fractional url:{0} to be present on the page")
 		public String waitForURLContains(String fractionURLValue, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
@@ -562,6 +600,7 @@ public class ElementUtil {
 			return driver.getCurrentUrl();
 		}
 
+		@Step("waiting for an url:{0} to be present on the page")
 		public String waitForURLIs(String epxectedURLValue, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 
@@ -574,6 +613,7 @@ public class ElementUtil {
 			return driver.getCurrentUrl();
 		}
 
+		@Step("waiting for a window using windowIndex")
 		public boolean waitForWindow(int expectedNoOfWindows, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 			try {
@@ -584,6 +624,7 @@ public class ElementUtil {
 			}
 		}
 
+		@Step("waiting for a frame using locator:{0}")
 		public boolean waitForFrame(By frameLocator, int timeout) {
 
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
@@ -598,6 +639,7 @@ public class ElementUtil {
 
 		}
 
+		@Step("waiting for a frame using frameIndex")
 		public boolean waitForFrame(int frameIndex, int timeout) {
 
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
@@ -612,6 +654,7 @@ public class ElementUtil {
 
 		}
 
+		@Step("waiting for a frame using NameorID:{0}")
 		public boolean waitForFrame(String frameNameOrID, int timeout) {
 
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
@@ -629,6 +672,7 @@ public class ElementUtil {
 		
 		//******************FluentWait Utils************//
 		
+		@Step("waiting for a visibility of the element:{0} using fluent wait")
 		public WebElement waitForElementVisibleWithFluentWait(By locator, int timeout, int pollingtime) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 					.withTimeout(Duration.ofSeconds(timeout))
@@ -640,7 +684,7 @@ public class ElementUtil {
 			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		}
 		
-		
+		@Step("waiting for a presence of the element:{0} using fluent wait")
 		public WebElement waitForElementPresenceWithFluentWait(By locator, int timeout, int pollingtime) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 					.withTimeout(Duration.ofSeconds(timeout))
@@ -653,7 +697,7 @@ public class ElementUtil {
 		}
 		
 		
-		
+		@Step("waiting for a frame using fluent wait")
 		public void waitForFrameWithFluentWait(By frameLocator, int timeout, int pollingtime) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 					.withTimeout(Duration.ofSeconds(timeout))
@@ -664,7 +708,7 @@ public class ElementUtil {
 			 wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
 		}
 		
-		
+		@Step("waiting for an alert using fluent wait")
 		public Alert waitForAlertWithFluentWait(int timeout, int pollingtime) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 					.withTimeout(Duration.ofSeconds(timeout))

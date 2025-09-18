@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import com.qa.opencart.errors.AppError;
@@ -46,16 +49,33 @@ public class DriverFactory {
 
 		highlightElement = prop.getProperty("highlight");
 		optionsManager = new OptionsManager(prop);
+		
+		Boolean remoteExec=Boolean.parseBoolean(prop.getProperty("remote"));
 
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
-			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+			if(remoteExec) {
+				init_remoteDriver("chrome");
+			}
+			else {
+				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+			}
 			break;
 		case "firefox":
+			if(remoteExec) {
+				init_remoteDriver("firefox");
+			}
+			else {
 			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+			}
 			break;
 		case "edge":
+			if(remoteExec) {
+				init_remoteDriver("edge");
+			}
+			else {
 			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
+			}
 			break;
 		case "safari":
 			tlDriver.set(new SafariDriver());
@@ -63,7 +83,6 @@ public class DriverFactory {
 		default:
 			log.error(AppError.INVALID_BROWSER_MSG + " : " + browserName);
 			throw new FrameworkException("=====Invalid Browser=====");
-
 		}
 
 		getDriver().manage().deleteAllCookies();
@@ -71,6 +90,34 @@ public class DriverFactory {
 		getDriver().get(prop.getProperty("url"));
 
 		return getDriver();
+	}
+	
+	/**
+	 * this is used to init the remote webdriver with selenium grid
+	 * @param string
+	 */
+
+	private void init_remoteDriver(String browserName) {
+		try {
+		switch(browserName.trim().toLowerCase()) {
+		case "chrome":
+			tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getChromeOptions()));
+			break;
+		case "edge":
+			tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getEdgeOptions()));
+			break;
+		case "firefox":
+			tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getFirefoxOptions()));
+			break;
+		default:
+			log.error(AppError.INVALID_BROWSER_MSG + browserName);
+			throw new FrameworkException("=========Invalid Browser=========");
+			} 	
+		}
+		catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+			
 	}
 
 	/**
