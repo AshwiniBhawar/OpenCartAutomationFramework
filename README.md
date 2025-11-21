@@ -17,7 +17,7 @@ This is a test automation framework for website https://naveenautomationlabs.com
 
 ## Scenarios Automated
 
-a) Login test with valid and invalid user details
+a) Login with valid and invalid user details
 
 b) Register a user
 
