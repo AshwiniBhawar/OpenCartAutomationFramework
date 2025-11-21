@@ -1,7 +1,7 @@
 package com.qa.opencart.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
@@ -17,7 +17,7 @@ import io.qameta.allure.Story;
 public class AddProductToTheCartPageTest extends BaseTest{
 
 	@Description("login to the application")
-	@BeforeTest
+	@BeforeClass
 	public void accPageSetup() {
 		accountPage=loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 	}

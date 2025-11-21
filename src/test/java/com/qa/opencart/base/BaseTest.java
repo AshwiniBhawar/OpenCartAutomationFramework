@@ -9,13 +9,10 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import com.qa.opencart.factory.DriverFactory;
-import com.qa.opencart.listeners.TestAllureListener;
 import com.qa.opencart.pages.AccountPage;
 import com.qa.opencart.pages.CheckOutPage;
 import com.qa.opencart.pages.HomePage;
@@ -31,7 +28,7 @@ public class BaseTest {
 	
 	WebDriver driver;
 	DriverFactory df;
-	
+		
 	private static final Logger log= LogManager.getLogger(DriverFactory.class);
 	
 	protected Properties prop;

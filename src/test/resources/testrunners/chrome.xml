@@ -16,14 +16,7 @@
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-	
-	<test name="Add Product To The Cart Page Test_Chrome">
-	<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="com.qa.opencart.tests.AddProductToTheCartPageTest" />
-		</classes>
-	</test>
-	
+		
 	<test name="Account Page Test_Chrome">
 	<parameter name="browser" value="chrome" />
 		<classes>
@@ -65,6 +58,13 @@
 			<class name="com.qa.opencart.tests.ProductReviewTest" />
 		</classes>
 	</test> -->
+	
+	<test name="Add Product To The Cart Page Test_Chrome">
+	<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.opencart.tests.AddProductToTheCartPageTest" />
+		</classes>
+	</test>
 	
 	<test name="Shopping Cart Product Details Test_Chrome">
 		<parameter name="browser" value="chrome" />

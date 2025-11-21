@@ -587,6 +587,7 @@ public class ElementUtil {
 
 			return driver.getTitle();
 		}
+		
 		@Step("waiting for a fractional url:{0} to be present on the page")
 		public String waitForURLContains(String fractionURLValue, int timeout) {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
